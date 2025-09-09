@@ -1,6 +1,7 @@
 local module = function(g,t,s,m_,x_)
 	g = g or 0
 	s = s or 2
+	dist = 1/s
 	
 	m_ = m_ or 1
 	x_ = x_ or #t_
@@ -8,11 +9,11 @@ local module = function(g,t,s,m_,x_)
 	
 	for i = 1,s do
 		m,x = m_+(((i-1)/s)*space), m_+((i/s)*space
-		if space > 2 then	
+		if space > 2 and dist > 1 then	
 			if g >= t[m] and g <= t[x] then
 				module(g,t,s,m,x)
 			end
-		elseif space == 2 then
+		elseif space == 2 or dist <= 1 then
 			if g == t[m] then
 				return m
 			elseif g == t[x] then
